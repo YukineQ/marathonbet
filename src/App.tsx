@@ -173,7 +173,7 @@ interface DatePickerWithRangeProps {
 }
 
 function DatePickerWithRange({ value, onDateChange }: DatePickerWithRangeProps) {
-  const [localDate, setLocalDate] = useState<DateRange | undefined>({ from: new Date(), to: new Date() });
+  const [localDate, setLocalDate] = useState<DateRange | undefined>();
 
   // Обновляем локальный стейт при изменениях value
   useEffect(() => {
@@ -205,7 +205,7 @@ function DatePickerWithRange({ value, onDateChange }: DatePickerWithRangeProps) 
               format(localDate.from, "LLL dd, y")
             )
           ) : (
-            <span>Pick a date</span>
+            <span>Выберите дату</span>
           )}
         </Button>
       </PopoverTrigger>
@@ -227,7 +227,7 @@ function App() {
 
   const [selectedCategory, setSelectedCategory] = useState<TransactionWithFilterType>('все');
   const [filteredData, setFilteredData] = useState<Day[]>(data);
-  const [dateRange, setDateRange] = useState<DateRange | undefined>();
+  const [dateRange, setDateRange] = useState<DateRange | undefined>({ from: new Date(), to: new Date() });
 
   const handleSelectChange: (
     value: 'вводы' | 'выводы' | 'ставки' | 'все' | null,
