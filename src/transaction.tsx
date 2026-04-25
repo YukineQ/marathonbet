@@ -20,7 +20,7 @@ export const Transaction = ({ title, date, amount, type, сurrentBalance }: Tran
                     )}>{amount.toFixed(2)} BYN
                 </p> 
             </div>
-            <p className="text-xs text-zinc-400 font-sans row-start-3">Баланс: {сurrentBalance}</p>
+            <p className="text-xs text-zinc-400 font-sans row-start-3">Баланс: {сurrentBalance.toFixed(2)}</p>
         </div>
     )
 }
