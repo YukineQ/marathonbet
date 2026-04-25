@@ -11,8 +11,8 @@ type TransactionProp = {
 export const Transaction = ({ title, date, amount, type, сurrentBalance }: TransactionProp) => {
     return (
         <div className="px-3 pt-3 grid-rows-3 w-full border-b border-stone-300 pb-2">
-            <p className="text-xs text-zinc-400 font-sans row-start-1 font-sm">{date}</p>
-            <div className="inline-flex justify-between w-full row-start-2 font-sm">
+            <p className="text-xs text-zinc-400 font-sans row-start-1">{date}</p>
+            <div className="inline-flex justify-between w-full row-start-2 text-sm">
                 <p>{title}</p>
                 <p className={twMerge(
                     "font-semibold",
