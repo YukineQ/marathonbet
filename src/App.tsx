@@ -164,6 +164,242 @@ const data: Day[] = [
         type: "вводы",
       },
     ]
+  },
+  {
+    date: 'Понедельник, 10 ноября 2025',
+    transactions: [
+      {
+        title: "Перевод на игровой счет (ЕРИП)",
+        amount: 200.00,
+        сurrentBalance: 200.00,
+        date: "21:52",
+        type: "вводы",
+      },
+      {
+        title: "Перевод на игровой счет (ЕРИП)",
+        amount: 34.62,
+        сurrentBalance: 34.62,
+        date: "21:19",
+        type: "вводы",
+      },
+      {
+        title: "Перевод на игровой счет (ЕРИП)",
+        amount: 230.00,
+        сurrentBalance: 230.00,
+        date: "08:26",
+        type: "вводы",
+      },
+      {
+        title: "Снятие с игрового счета",
+        amount: 42.76,
+        сurrentBalance: 160.00,
+        date: "20:16",
+        type: "выводы",
+      },
+      {
+        title: "Перевод на игровой счет (ЕРИП)",
+        amount: 52.00,
+        сurrentBalance: 52.00,
+        date: "19:06",
+        type: "вводы",
+      },
+    ],
+  },
+  {
+    date: 'Воскресенье, 09 ноября 2025',
+    transactions: [
+      {
+        title: "Перевод на игровой счет (ЕРИП)",
+        amount: 6.31,
+        сurrentBalance: 6.31,
+        date: "23:07",
+        type: "вводы"
+      },
+      {
+        title: "Снятие с игрового счета",
+        amount: 19.20,
+        сurrentBalance: 13.60,
+        date: "21:51",
+        type: "выводы"
+      },
+      {
+        title: "Перевод на игровой счет (ЕРИП)",
+        amount: 14.90,
+        сurrentBalance: 14.90,
+        date: "21:22",
+        type: "вводы"
+      },
+      {
+        title: "Снятие с игрового счета",
+        amount: 38.40,
+        сurrentBalance: 12.62,
+        date: "18:59",
+        type: "выводы"
+      },
+      {
+        title: "Перевод на игровой счет (ЕРИП)",
+        amount: 67.45,
+        сurrentBalance: 67.45,
+        date: "13:59",
+        type: "вводы"
+      },
+      {
+        title: "Снятие с игрового счета",
+        amount: 78.52,
+        сurrentBalance: 200.00,
+        date: "13:26",
+        type: "выводы"
+      },
+      {
+        title: "Перевод на игровой счет (ЕРИП)",
+        amount: 37.42,
+        сurrentBalance: 37.42,
+        date: "13:09",
+        type: "вводы"
+      },
+    ]
+  },
+  {
+    date: "Суббота, 8 ноября 2025",
+    transactions: [
+      {
+        title: "Перевод на игровой счет (ЕРИП)",
+        amount: 45.99,
+        сurrentBalance: 45.99,
+        date: "15:42",
+        type: "вводы"
+      },
+      {
+        title: "Снятие с игрового счета",
+        amount: 57.60,
+        сurrentBalance: 0.00,
+        date: "11:57",
+        type: "выводы"
+      },
+    ]
+  },
+  {
+    date: "Пятница, 7 ноября 2025",
+    transactions: [
+      {
+        title: "Перевод на игровой счет (ЕРИП)",
+        amount: 37.77,
+        сurrentBalance: 37.77,
+        date: "22:47",
+        type: "вводы"
+      },
+      {
+        title: "Снятие с игрового счета",
+        amount: 112.44,
+        сurrentBalance: 200.00,
+        date: "15:09",
+        type: "выводы"
+      },
+      {
+        title: "Перевод на игровой счет (ЕРИП)",
+        amount: 65.78,
+        сurrentBalance: 65.78,
+        date: "14:08",
+        type: "вводы"
+      },
+    ]
+  },
+  {
+    date: "Четверг, 7 ноября 2025",
+    transactions: [
+      {
+        title: "Перевод на игровой счет (ЕРИП)",
+        amount: 37.77,
+        сurrentBalance: 37.77,
+        date: "22:47",
+        type: "вводы"
+      },
+      {
+        title: "Снятие с игрового счета",
+        amount: 112.44,
+        сurrentBalance: 200.00,
+        date: "15:09",
+        type: "выводы"
+      },
+      {
+        title: "Перевод на игровой счет (ЕРИП)",
+        amount: 65.78,
+        сurrentBalance: 65.78,
+        date: "14:08",
+        type: "вводы"
+      },
+    ]
+  },
+  {
+    date: "Среда, 6 ноября 2025",
+    transactions: [
+      {
+        title: "Снятие с игрового счета",
+        amount: 76.80,
+        сurrentBalance: 400.00,
+        date: "22:14",
+        type: "выводы"
+      },
+      {
+        title: "Снятие с игрового счета",
+        amount: 57.59,
+        сurrentBalance: 200.00,
+        date: "08:57",
+        type: "выводы"
+      },
+    ]
+  },
+  {
+    date: "Вторник, 5 ноября 2025",
+    transactions: [
+      {
+        title: "Снятие с игрового счета",
+        amount: 17.70,
+        сurrentBalance: 400.00,
+        date: "20:46",
+        type: "выводы"
+      },
+      {
+        title: "Снятие с игрового счета",
+        amount: 39.63,
+        сurrentBalance: 200.00,
+        date: "13:06",
+        type: "выводы"
+      },
+      {
+        title: "Перевод на игровой счет (ЕРИП)",
+        amount: 21.98,
+        сurrentBalance: 21.98,
+        date: "10:58",
+        type: "вводы"
+      },
+    ]
+  },
+  {
+    date: "Понедельник, 4 ноября 2025",
+    transactions: [
+      {
+        title: "Перевод на игровой счет (ЕРИП)",
+        amount: 102.22,
+        сurrentBalance: 102.22,
+        date: "23:24",
+        type: "вводы"
+      },
+      {
+        title: "Снятие с игрового счета",
+        amount: 112.40,
+        сurrentBalance: 600,
+        date: "18:48",
+        type: "выводы"
+      },
+      {
+        title: "Снятие с игрового счета",
+        amount: 34.90,
+        сurrentBalance: 600,
+        date: "13:01",
+        type: "выводы"
+      },
+    ]
   }
 ];
 
@@ -217,6 +453,7 @@ function DatePickerWithRange({ value, onDateChange }: DatePickerWithRangeProps) 
           onSelect={handleRangeChange}
           numberOfMonths={2}
           locale={ru}
+          disabled={{ to: new Date(2025, 10, 3), from: new Date(2000, 0, 1) }}
         />
       </PopoverContent>
     </Popover>
