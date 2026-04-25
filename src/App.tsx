@@ -174,7 +174,7 @@ function DatePickerWithRange() {
 
   return (
     <Popover>
-      <PopoverTrigger className='w-1/2 pb-1'>
+      <PopoverTrigger className='w-1/2 pb-1 mr-2'>
         <Button
           variant="outline"
           id="date-picker-range"
