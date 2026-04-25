@@ -173,7 +173,7 @@ interface DatePickerWithRangeProps {
 }
 
 function DatePickerWithRange({ value, onDateChange }: DatePickerWithRangeProps) {
-  const [localDate, setLocalDate] = useState<DateRange | undefined>(value);
+  const [localDate, setLocalDate] = useState<DateRange | undefined>({ from: new Date(), to: new Date() });
 
   // Обновляем локальный стейт при изменениях value
   useEffect(() => {
