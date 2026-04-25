@@ -1,6 +1,6 @@
 import { twMerge } from "tailwind-merge";
 
-type TransactionProp = {
+export type TransactionProp = {
     title: string,
     date: string,
     amount: number,
@@ -10,7 +10,7 @@ type TransactionProp = {
 
 export const Transaction = ({ title, date, amount, type, сurrentBalance }: TransactionProp) => {
     return (
-        <div className="px-3 pt-3 grid-rows-3 w-full border-b border-stone-300 pb-2">
+        <div className="px-3 pt-3 grid-rows-3 w-full border-t border-stone-300 pb-2">
             <p className="text-xs text-zinc-400 font-sans row-start-1">{date}</p>
             <div className="inline-flex justify-between w-full row-start-2 text-sm">
                 <p>{title}</p>

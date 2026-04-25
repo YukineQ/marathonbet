@@ -1,5 +1,58 @@
 import './App.css'
-import { Transaction } from './transaction'
+import { Transaction, type TransactionProp } from './transaction'
+
+type Day = {
+  date: string;
+  transactions: TransactionProp[];
+}
+
+const data: Day[] = [
+  {
+    date: "Суббота, 15 ноября 2025",
+    transactions: [
+      {
+        title: "Перевод на игровой счет (ЕРИП)",
+        amount: 14.21,
+        сurrentBalance: 14.21,
+        date: "21:27",
+        type: "plus"
+      },
+      {
+        title: "Перевод на игровой счет (ЕРИП)",
+        amount: 40.40,
+        сurrentBalance: 40.40,
+        date: "21:11",
+        type: "plus"
+      },
+      {
+        title: "Перевод на игровой счет (ЕРИП)",
+        amount: 12.97,
+        сurrentBalance: 12.97,
+        date: "20:13",
+        type: "plus"
+      },
+      {
+        title: "Перевод на игровой счет (ЕРИП)",
+        amount: 170.00,
+        сurrentBalance: 170.00,
+        date: "17:58",
+        type: "plus"
+      },
+    ]
+  },
+  {
+    date: 'Четверг, 13 ноября 2025',
+    transactions: [
+      {
+        title: "Перевод на игровой счет (ЕРИП)",
+        amount: 7.48,
+        сurrentBalance: 7.54,
+        date: "20:07",
+        type: "plus"
+      },
+    ]
+  }
+];
 
 function App() {
 
@@ -19,37 +72,22 @@ function App() {
       </div>
       <div>
         <div>
-          <div className='border-b border-stone-300 py-2'>
-            <h3 className='pl-3 font-semibold'>Суббота, 15 ноября 2025</h3>
-          </div>
-          <Transaction
-            title="Перевод на игровой счет (ЕРИП)"
-            amount={14.21}
-            сurrentBalance={14.21}
-            date="21:27"
-            type="plus"
-          />
-          <Transaction
-            title="Перевод на игровой счет (ЕРИП)"
-            amount={40.00}
-            сurrentBalance={40.00}
-            date="21:11"
-            type="plus"
-          />
-          <Transaction
-            title="Перевод на игровой счет (ЕРИП)"
-            amount={12.97}
-            сurrentBalance={12.97}
-            date="20:13"
-            type="plus"
-          />
-          <Transaction
-            title="Перевод на игровой счет (ЕРИП)"
-            amount={170.00}
-            сurrentBalance={170.00}
-            date="17:58"
-            type="plus"
-          />
+          {data.map(item => (
+            <>
+              <div className='pb-2 pt-3'>
+                <h3 className='pl-3 font-semibold'>{item.date}</h3>
+              </div>
+              {item.transactions.map(transaction => (
+                <Transaction
+                  title={transaction.title}
+                  amount={transaction.amount}
+                  сurrentBalance={transaction.сurrentBalance}
+                  date={transaction.date}
+                  type={transaction.type}
+                />
+              ))}
+            </>
+          ))}
         </div>
       </div>
     </>
