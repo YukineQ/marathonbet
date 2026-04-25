@@ -3,6 +3,12 @@ import './App.css'
 import { Transaction, type TransactionProp } from './transaction'
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from './components/ui/select';
 import type { SelectRootChangeEventDetails } from '@base-ui/react';
+import { addDays, format } from "date-fns"
+import { Popover, PopoverContent, PopoverTrigger } from './components/ui/popover';
+import { Button } from './components/ui/button';
+import { CalendarIcon } from 'lucide-react';
+import { Calendar } from './components/ui/calendar';
+import type { DateRange } from 'react-day-picker';
 
 type Day = {
   date: string;
@@ -160,6 +166,49 @@ const data: Day[] = [
   }
 ];
 
+function DatePickerWithRange() {
+  const [date, setDate] = useState<DateRange | undefined>({
+    from: new Date(new Date().getFullYear(), 0, 20),
+    to: addDays(new Date(new Date().getFullYear(), 0, 20), 20),
+  })
+
+  return (
+    <Popover>
+      <PopoverTrigger className='w-1/2 pb-1'>
+        <Button
+          variant="outline"
+          id="date-picker-range"
+          className="justify-start px-2.5 font-normal w-full mx-2"
+          size='sm'
+        >
+          <CalendarIcon />
+          {date?.from ? (
+            date.to ? (
+              <>
+                {format(date.from, "LLL dd, y")} -{" "}
+                {format(date.to, "LLL dd, y")}
+              </>
+            ) : (
+              format(date.from, "LLL dd, y")
+            )
+          ) : (
+            <span>Pick a date</span>
+          )}
+        </Button>
+      </PopoverTrigger>
+      <PopoverContent className="w-auto p-0" align="start">
+        <Calendar
+          mode="range"
+          defaultMonth={date?.from}
+          selected={date}
+          onSelect={setDate}
+          numberOfMonths={2}
+        />
+      </PopoverContent>
+    </Popover>
+  )
+}
+
 function App() {
 
   const [selectedCategory, setSelectedCategory] = useState<TransactionWithFilterType>('все');
@@ -203,7 +252,7 @@ function App() {
           </div>
         </div>
 
-        <div className='px-2 pt-1 bg-white border-b border-stone-200 h-12'>
+        <div className='px-2 pt-1 bg-white border-b border-stone-200 h-12 flex'>
           <Select id="category-select" value={selectedCategory} onValueChange={handleSelectChange}>
             <SelectTrigger className='w-1/2 mt-1' size='sm'>
               <SelectValue />
@@ -216,6 +265,8 @@ function App() {
               <SelectItem value="ставки">ставки</SelectItem>
             </SelectContent>
           </Select>
+
+          <DatePickerWithRange />
         </div>
       </div>
       <div className='mt-36'>
