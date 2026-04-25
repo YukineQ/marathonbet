@@ -3,7 +3,7 @@ import './App.css'
 import { Transaction, type TransactionProp } from './transaction'
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from './components/ui/select';
 import type { SelectRootChangeEventDetails } from '@base-ui/react';
-import { addDays, format, parse } from "date-fns"
+import { format, parse } from "date-fns"
 import { Popover, PopoverContent, PopoverTrigger } from './components/ui/popover';
 import { Button } from './components/ui/button';
 import { CalendarIcon } from 'lucide-react';
