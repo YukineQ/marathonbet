@@ -1,10 +1,16 @@
+import { useState } from 'react';
 import './App.css'
 import { Transaction, type TransactionProp } from './transaction'
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from './components/ui/select';
+import type { SelectRootChangeEventDetails } from '@base-ui/react';
 
 type Day = {
   date: string;
   transactions: TransactionProp[];
 }
+
+export type TransactionWithFilterType = 'plus' | 'minus' | 'bet' | 'all';
+
 
 const data: Day[] = [
   {
@@ -157,23 +163,63 @@ const data: Day[] = [
 
 function App() {
 
+  const [selectedCategory, setSelectedCategory] = useState<TransactionWithFilterType>('all');
+  const [filteredData, setFilteredData] = useState<Day[]>(data);
+
+  const handleSelectChange: (
+    value: 'plus' | 'minus' | 'bet' | 'all' | null,
+    eventDetails: SelectRootChangeEventDetails
+  ) => void = (value, eventDetails) => {
+    if (value === null || value === 'all') {
+      // показать все
+      setFilteredData(data);
+    } else {
+      const filteredDays = data
+        .map(day => {
+          const filteredTransactions = day.transactions.filter(t => t.type === value);
+          return filteredTransactions.length > 0 ? { ...day, transactions: filteredTransactions } : null;
+        })
+        .filter(Boolean) as typeof data;
+      setFilteredData(filteredDays);
+    }
+    // вызов колбэка, если нужно:
+    // onValueChange?.(value, eventDetails);
+  };
+
   return (
     <>
-      <div className='fixed top-0 h-20 w-full bg-[#062247] flex justify-center flex-col items-center'>
-        <h2 className='text-white text-lg font-semibold'>История</h2>
+      <div className='fixed top-0 w-full'>
+        <div className='h-20 w-full bg-[#062247] flex justify-center flex-col items-center'>
+          <h2 className='text-white text-lg font-semibold'>История</h2>
 
-        <div className='flex w-full px-3 pt-1'>
-          <div className='border w-full h-8 text-center text-white rounded-l border-[#53678A] pt-0.5 align-middle'>
-            <span className='text-xs'>История ставок</span>
-          </div>
-          <div className='border-r border-t border-b w-full h-8 text-center text-white rounded-r bg-[#53678A] border-[#53678A] align-middle pt-0.5'>
-            <span className='text-xs'>История игрового счета</span>
+          <div className='flex w-full px-3 pt-1'>
+            <div className='border w-full h-8 text-center text-white rounded-l border-[#53678A] pt-0.5 align-middle'>
+              <span className='text-xs'>История ставок</span>
+            </div>
+            <div className='border-r border-t border-b w-full h-8 text-center text-white rounded-r bg-[#53678A] border-[#53678A] align-middle pt-0.5'>
+              <span className='text-xs'>История игрового счета</span>
+            </div>
           </div>
         </div>
+
+        <div className='px-2 pt-1'>
+          <Select id="category-select" value={selectedCategory} onValueChange={handleSelectChange}>
+            <SelectTrigger className='w-1/2'>
+              <SelectValue />
+            </SelectTrigger>
+
+            <SelectContent>
+              <SelectItem value="all">все</SelectItem>
+              <SelectItem value="plus">вводы</SelectItem>
+              <SelectItem value="minus">выводы</SelectItem>
+              <SelectItem value="bet">ставки</SelectItem>
+            </SelectContent>
+          </Select>
+        </div>
       </div>
-      <div className='mt-20'>
+      <div className='mt-28'>
         <div>
-          {data.map(item => (
+          {filteredData.map(item => (
             <>
               <div className='pb-2 pt-3'>
                 <h3 className='pl-3 font-semibold'>{item.date}</h3>
