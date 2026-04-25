@@ -1,14 +1,15 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import './App.css'
 import { Transaction, type TransactionProp } from './transaction'
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from './components/ui/select';
 import type { SelectRootChangeEventDetails } from '@base-ui/react';
-import { addDays, format } from "date-fns"
+import { addDays, format, parse } from "date-fns"
 import { Popover, PopoverContent, PopoverTrigger } from './components/ui/popover';
 import { Button } from './components/ui/button';
 import { CalendarIcon } from 'lucide-react';
 import { Calendar } from './components/ui/calendar';
 import type { DateRange } from 'react-day-picker';
+import { ru } from 'date-fns/locale';
 
 type Day = {
   date: string;
@@ -166,11 +167,23 @@ const data: Day[] = [
   }
 ];
 
-function DatePickerWithRange() {
-  const [date, setDate] = useState<DateRange | undefined>({
-    from: new Date(new Date().getFullYear(), 0, 20),
-    to: addDays(new Date(new Date().getFullYear(), 0, 20), 20),
-  })
+interface DatePickerWithRangeProps {
+  value?: DateRange;
+  onDateChange?: (range: DateRange | undefined) => void;
+}
+
+function DatePickerWithRange({ value, onDateChange }: DatePickerWithRangeProps) {
+  const [localDate, setLocalDate] = useState<DateRange | undefined>(value);
+
+  // Обновляем локальный стейт при изменениях value
+  useEffect(() => {
+    setLocalDate(value);
+  }, [value]);
+
+  const handleRangeChange = (range: DateRange | undefined) => {
+    setLocalDate(range);
+    onDateChange?.(range); // передаем изменение родителю
+  };
 
   return (
     <Popover>
@@ -182,14 +195,14 @@ function DatePickerWithRange() {
           size='sm'
         >
           <CalendarIcon />
-          {date?.from ? (
-            date.to ? (
+          {localDate?.from ? (
+            localDate.to ? (
               <>
-                {format(date.from, "LLL dd, y")} -{" "}
-                {format(date.to, "LLL dd, y")}
+                {format(localDate.from, "LLL dd, y", { locale: ru })} -{" "}
+                {format(localDate.to, "LLL dd, y", { locale: ru })}
               </>
             ) : (
-              format(date.from, "LLL dd, y")
+              format(localDate.from, "LLL dd, y")
             )
           ) : (
             <span>Pick a date</span>
@@ -199,20 +212,22 @@ function DatePickerWithRange() {
       <PopoverContent className="w-auto p-0" align="start">
         <Calendar
           mode="range"
-          defaultMonth={date?.from}
-          selected={date}
-          onSelect={setDate}
+          defaultMonth={localDate?.from}
+          selected={localDate}
+          onSelect={handleRangeChange}
           numberOfMonths={2}
+          locale={ru}
         />
       </PopoverContent>
     </Popover>
-  )
+  );
 }
 
 function App() {
 
   const [selectedCategory, setSelectedCategory] = useState<TransactionWithFilterType>('все');
   const [filteredData, setFilteredData] = useState<Day[]>(data);
+  const [dateRange, setDateRange] = useState<DateRange | undefined>();
 
   const handleSelectChange: (
     value: 'вводы' | 'выводы' | 'ставки' | 'все' | null,
@@ -234,6 +249,22 @@ function App() {
     setSelectedCategory(value!)
     // вызов колбэка, если нужно:
     // onValueChange?.(value, eventDetails);
+  };
+
+  const handleDateChange = (range?: DateRange) => {
+    setDateRange(range);
+    // Тут делайте фильтрацию данных по диапазону, которая будет у вас в родительском
+    if (range?.from && range?.to) {
+      const filtered = data.filter(day => {
+        const formatString = "EEEE, d MMMM yyyy";
+        const dayDate = parse(day.date, formatString, new Date(), { locale: ru });
+        console.log(dayDate)
+        return dayDate >= range.from! && dayDate <= range.to!;
+      });
+      setFilteredData(filtered);
+    } else {
+      setFilteredData(data);
+    }
   };
 
   return (
@@ -266,7 +297,7 @@ function App() {
             </SelectContent>
           </Select>
 
-          <DatePickerWithRange />
+          <DatePickerWithRange value={dateRange} onDateChange={handleDateChange} />
         </div>
       </div>
       <div className='mt-36'>
