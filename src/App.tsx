@@ -205,8 +205,8 @@ function App() {
 
         <div className='px-2 pt-1 bg-white border-b border-stone-200 h-12'>
           <Select id="category-select" value={selectedCategory} onValueChange={handleSelectChange}>
-            <SelectTrigger className='w-1/2'>
-              <SelectValue  />
+            <SelectTrigger className='w-1/2 mt-1' size='sm'>
+              <SelectValue />
             </SelectTrigger>
 
             <SelectContent>
