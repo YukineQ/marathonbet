@@ -159,7 +159,7 @@ function App() {
 
   return (
     <>
-      <div className='sticky h-20 bg-[#062247] flex justify-center flex-col items-center'>
+      <div className='fixed top-0 h-20 w-full bg-[#062247] flex justify-center flex-col items-center'>
         <h2 className='text-white text-lg font-semibold'>История</h2>
 
         <div className='flex w-full px-3 pt-1'>
@@ -171,7 +171,7 @@ function App() {
           </div>
         </div>
       </div>
-      <div>
+      <div className='mt-20'>
         <div>
           {data.map(item => (
             <>
