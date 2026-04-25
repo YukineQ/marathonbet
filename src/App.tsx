@@ -163,13 +163,13 @@ const data: Day[] = [
 
 function App() {
 
-  const [selectedCategory, setSelectedCategory] = useState<TransactionWithFilterType>('all');
+  const [selectedCategory] = useState<TransactionWithFilterType>('all');
   const [filteredData, setFilteredData] = useState<Day[]>(data);
 
   const handleSelectChange: (
     value: 'plus' | 'minus' | 'bet' | 'all' | null,
     eventDetails: SelectRootChangeEventDetails
-  ) => void = (value, eventDetails) => {
+  ) => void = (value) => {
     if (value === null || value === 'all') {
       // показать все
       setFilteredData(data);
