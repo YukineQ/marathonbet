@@ -163,7 +163,7 @@ const data: Day[] = [
 
 function App() {
 
-  const [selectedCategory] = useState<TransactionWithFilterType>('all');
+  const [selectedCategory, setSelectedCategory] = useState<TransactionWithFilterType>('all');
   const [filteredData, setFilteredData] = useState<Day[]>(data);
 
   const handleSelectChange: (
@@ -182,6 +182,8 @@ function App() {
         .filter(Boolean) as typeof data;
       setFilteredData(filteredDays);
     }
+
+    setSelectedCategory(value!)
     // вызов колбэка, если нужно:
     // onValueChange?.(value, eventDetails);
   };
@@ -202,7 +204,7 @@ function App() {
           </div>
         </div>
 
-        <div className='px-2 pt-1'>
+        <div className='px-2 pt-1 bg-white border-b border-stone-200 h-12'>
           <Select id="category-select" value={selectedCategory} onValueChange={handleSelectChange}>
             <SelectTrigger className='w-1/2'>
               <SelectValue />
@@ -217,7 +219,7 @@ function App() {
           </Select>
         </div>
       </div>
-      <div className='mt-28'>
+      <div className='mt-36'>
         <div>
           {filteredData.map(item => (
             <>
