@@ -5,7 +5,7 @@ export type TransactionProp = {
     date: string,
     amount: number,
     сurrentBalance: number,
-    type: 'plus' | 'minus' | 'bet',
+    type: 'вводы' | 'выводы' | 'ставки',
 }
 
 export const Transaction = ({ title, date, amount, type, сurrentBalance }: TransactionProp) => {
@@ -16,8 +16,8 @@ export const Transaction = ({ title, date, amount, type, сurrentBalance }: Tran
                 <p>{title}</p>
                 <p className={twMerge(
                     "font-semibold",
-                    type == 'plus' ? "text-green-600" : "text-gray-800 font-normal"
-                    )}>{type == 'minus' ? "-" : ""}{amount.toFixed(2)} BYN
+                    type == 'вводы' ? "text-green-600" : "text-gray-800 font-normal"
+                    )}>{type == 'выводы' ? "-" : ""}{amount.toFixed(2)} BYN
                 </p> 
             </div>
             <p className="text-xs text-zinc-400 font-sans row-start-3">Баланс: {сurrentBalance.toFixed(2)}</p>
