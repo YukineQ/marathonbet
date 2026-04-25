@@ -6,7 +6,7 @@ import type { SelectRootChangeEventDetails } from '@base-ui/react';
 import { format, parse } from "date-fns"
 import { Popover, PopoverContent, PopoverTrigger } from './components/ui/popover';
 import { Button } from './components/ui/button';
-import { CalendarIcon } from 'lucide-react';
+import { CalendarIcon, ChevronLeft } from 'lucide-react';
 import { Calendar } from './components/ui/calendar';
 import type { DateRange } from 'react-day-picker';
 import { ru } from 'date-fns/locale';
@@ -271,6 +271,9 @@ function App() {
     <>
       <div className='fixed top-0 w-full'>
         <div className='h-20 w-full bg-[#062247] flex justify-center flex-col items-center'>
+
+          <a href='https://www.marathonbet.by/' className='absolute top-0 left-0 pl-2 pt-2'><ChevronLeft className='text-white' /></a>
+
           <h2 className='text-white text-lg font-semibold'>История</h2>
 
           <div className='flex w-full px-3 pt-1'>
